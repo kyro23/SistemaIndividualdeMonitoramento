@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.senai.sistemaindividualdemonitoramento.InitialActivity">
+
+
+    <RelativeLayout
+        android:layout_width="270dp"
+        android:layout_height="match_parent"
+        android:background="#01af84">
+
+        <TextView
+            android:id="@+id/sidebar_label_ordemProducao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ordem de Produção"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:textSize="18sp"
+            android:textColor="#FFFF"/>
+
+        <EditText
+            android:id="@+id/sidebar_op_text"
+            android:layout_width="159dp"
+            android:layout_height="35dp"
+            android:background="@drawable/text_shape"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/sidebar_label_ordemProducao"
+            android:layout_marginBottom="-40dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:padding="5sp"
+            />
+
+        <TextView
+            android:id="@+id/sidebar_label_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matricula"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:textSize="18sp"
+            android:textColor="#FFFF" />
+
+        <EditText
+            android:id="@+id/sidebar_user_text"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:background="@drawable/text_shape"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/sidebar_label_user"
+            android:layout_marginBottom="-40dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:padding="5sp"
+            />
+
+        <TextView
+            android:id="@+id/sidebar_label_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senha"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="250dp"
+            android:textSize="18sp"
+            android:textColor="#FFFF" />
+
+
+        <EditText
+            android:id="@+id/sidebar_user_password"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:background="@drawable/text_shape"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/sidebar_label_password"
+            android:layout_marginBottom="-40dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:padding="5sp"
+            android:inputType="textPassword"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
