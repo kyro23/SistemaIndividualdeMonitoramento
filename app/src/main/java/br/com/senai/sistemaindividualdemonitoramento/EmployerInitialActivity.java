@@ -61,7 +61,9 @@ public class EmployerInitialActivity extends AppCompatActivity {
         btnEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent goFinish = new Intent(EmployerInitialActivity.this, EmployerFinishActivity.class);
+                startActivity(goFinish);
+                finish();
             }
         });
     }

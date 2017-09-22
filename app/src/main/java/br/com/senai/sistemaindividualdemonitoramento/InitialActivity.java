@@ -40,7 +40,8 @@ public class InitialActivity extends AppCompatActivity {
 
                         break;
                     case 2:
-                        Toast.makeText(InitialActivity.this, "Gestor", Toast.LENGTH_SHORT).show();
+                        Intent goMananger = new Intent(InitialActivity.this, ManangerActivity.class);
+                        startActivity(goMananger);
                         break;
                     default:
                         break;

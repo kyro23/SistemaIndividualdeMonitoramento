@@ -30,7 +30,7 @@
         <activity
             android:name=".ManangerActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".EmployerFinishActivity"></activity>
+        <activity android:name=".EmployerFinishActivity" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
