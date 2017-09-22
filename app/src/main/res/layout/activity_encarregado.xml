@@ -174,13 +174,14 @@
                 android:textColor="#004f76"/>
 
             <Button
+                android:id="@+id/encarregado_salvar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:text="Salvar"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/button_save_shape"
+                android:background="@drawable/button_blue_shape"
                 android:textColor="#FFFF"
                 android:textSize="20sp"
                 />

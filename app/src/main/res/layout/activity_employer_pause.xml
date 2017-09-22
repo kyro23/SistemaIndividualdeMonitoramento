@@ -13,7 +13,7 @@
         android:background="#004f76">
 
 
-        
+
         <TextView
             android:id="@+id/sidebar_label_ordemProducao"
             android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
             android:padding="10dp"
             android:textColor="#000000"
             android:textSize="18sp"
-           />
+            />
     </RelativeLayout>
 
 
@@ -123,20 +123,56 @@
             android:layout_height="64dp"
             android:src="@drawable/ic_logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
-        <Button
-            android:id="@+id/button_login"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:text="Login"
-            android:textSize="20sp"
-            android:background="@drawable/button_green_shape"
+        <RelativeLayout
+            android:layout_width="400dp"
+            android:layout_height="360dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            />
+            android:layout_marginBottom="50dp">
 
+            <Button
+                android:id="@+id/employer_pause_feed"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:text="Alimentação"
+                android:background="@drawable/button_blue_shape"
+                android:textColor="#FFFF"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/employer_pause_other"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:text="Outros"
+                android:background="@drawable/button_blue_shape"
+                android:textColor="#FFFF"
+                android:textSize="20sp"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                android:id="@+id/employer_pause_material"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:text="Material"
+                android:background="@drawable/button_blue_shape"
+                android:textColor="#FFFF"
+                android:textSize="20sp"
+                android:layout_alignParentBottom="true"/>
+
+            <Button
+                android:id="@+id/employer_pause_photos"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:text="Fotos"
+                android:background="@drawable/button_blue_shape"
+                android:textColor="#FFFF"
+                android:textSize="20sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

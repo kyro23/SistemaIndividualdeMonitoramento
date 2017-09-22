@@ -2,7 +2,9 @@ package br.com.senai.sistemaindividualdemonitoramento;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class EncarregadoActivity extends AppCompatActivity {
@@ -18,5 +20,13 @@ public class EncarregadoActivity extends AppCompatActivity {
 
         Spinner spn = (Spinner) findViewById(R.id.spn_activity);
         spn.setAdapter(adapter);
+
+        Button btnSalvar = (Button) findViewById(R.id.encarregado_salvar);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

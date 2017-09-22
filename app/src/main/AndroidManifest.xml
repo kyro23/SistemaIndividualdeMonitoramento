@@ -18,7 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EncarregadoActivity"></activity>
+        <activity
+            android:name=".EncarregadoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".EmployerInitialActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".EmployerPauseActivity" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
