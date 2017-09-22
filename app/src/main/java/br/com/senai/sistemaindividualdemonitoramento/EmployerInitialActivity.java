@@ -10,9 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import static br.com.senai.sistemaindividualdemonitoramento.R.id.funcionario_button_start;
-import static br.com.senai.sistemaindividualdemonitoramento.R.id.start;
-
 public class EmployerInitialActivity extends AppCompatActivity {
 
     @Override
