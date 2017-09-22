@@ -56,5 +56,13 @@ public class EmployerInitialActivity extends AppCompatActivity {
                 startActivity(goPauseScreen);
             }
         });
+
+        Button btnEnd = (Button) findViewById(R.id.funcionario_button_end);
+        btnEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }

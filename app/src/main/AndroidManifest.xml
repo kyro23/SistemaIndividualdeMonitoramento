@@ -27,7 +27,10 @@
         <activity
             android:name=".EmployerPauseActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ManangerActivity" android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".ManangerActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".EmployerFinishActivity"></activity>
     </application>
 
 </manifest>
