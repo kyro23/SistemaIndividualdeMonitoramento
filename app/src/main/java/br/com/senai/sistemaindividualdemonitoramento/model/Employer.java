@@ -1,10 +1,12 @@
 package br.com.senai.sistemaindividualdemonitoramento.model;
 
+import java.io.Serializable;
+
 /**
  * Created by OC on 22/09/2017.
  */
 
-public class Employer {
+public class Employer implements Serializable{
 
     private Long matricula;
     private String senha;

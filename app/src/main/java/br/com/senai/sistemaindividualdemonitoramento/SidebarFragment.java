@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+
 
 public class SidebarFragment extends Fragment {
 
@@ -17,7 +19,13 @@ public class SidebarFragment extends Fragment {
     private EditText campoSenha;
 
 
+    public String os;
+    public String matricula;
+    public String senha;
 
+    public SidebarFragment(){
+
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,6 +35,9 @@ public class SidebarFragment extends Fragment {
         campoMatricula = view.findViewById(R.id.sidebar_user_text);
         campoSenha = view.findViewById(R.id.sidebar_user_password);
 
+        campoOs.setText(os);
+        campoMatricula.setText(matricula);
+        campoSenha.setText(senha);
 
         this.view = view;
 

@@ -74,7 +74,7 @@ public class InitialActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertBuilder.show();
+//                alertBuilder.show();
 
                 String os = sidebarFragment.getOs();
                 String matricula = sidebarFragment.getMatricula();
@@ -91,6 +91,40 @@ public class InitialActivity extends AppCompatActivity {
                     Employer finded = dao.login(employer);
                     if(finded.getNome() != null){
                         Toast.makeText(InitialActivity.this, "Logado!", Toast.LENGTH_SHORT).show();
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction tx = fragmentManager.beginTransaction();
+
+                        final SidebarFragment sidebarFragment = new SidebarFragment();
+
+                        tx.replace(R.id.frame_sidebar, sidebarFragment);
+                        tx.commit();
+
+                        switch (finded.getTipo()) {
+                            case "Funcionario":
+                                Intent goEmployerInitial = new Intent(InitialActivity.this, EmployerInitialActivity.class);
+                                goEmployerInitial.putExtra("employer", finded);
+
+                                startActivity(goEmployerInitial);
+
+                                break;
+                            case "Gestor":
+                                Intent goMananger = new Intent(InitialActivity.this, ManangerActivity.class);
+
+                                goMananger.putExtra("employer", finded);
+                                startActivity(goMananger);
+
+                                break;
+                            case "Encarregado":
+
+                                Intent goEncarregado = new Intent(InitialActivity.this, EncarregadoActivity.class);
+                                goEncarregado.putExtra("employer", finded);
+                                startActivity(goEncarregado);
+                                break;
+                            default:
+                                break;
+                        }
+
                     }else{
                         Toast.makeText(InitialActivity.this, "Não Logado!", Toast.LENGTH_SHORT).show();
                     }

@@ -19,7 +19,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        String[] defaultSpnText = {"Funcionario", "Gestor"};
+        String[] defaultSpnText = {"Funcionario", "Gestor", "Encarregado"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
 
         Spinner spn = (Spinner) findViewById(R.id.cadastro_tipo);

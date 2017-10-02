@@ -23,7 +23,7 @@ public class ListEmployerActivity extends AppCompatActivity {
 
        List<String> strEmp = new ArrayList<>();
         for(Employer emp : employers){
-            strEmp.add(emp.getMatricula()+" "+emp.getSenha());
+            strEmp.add("Matricula: "+emp.getMatricula()+" Senha:"+emp.getSenha()+" Tipo: "+emp.getTipo()+" Nome"+emp.getNome());
         }
 
 

@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+
 public class EmployerInitialActivity extends AppCompatActivity {
 
     @Override
@@ -19,10 +21,7 @@ public class EmployerInitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_initial);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction tx = fragmentManager.beginTransaction();
-        tx.replace(R.id.frame_sidebar, new SidebarFragment());
-        tx.commit();
+
 
         String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
@@ -44,7 +43,6 @@ public class EmployerInitialActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         Button btnStart = (Button) findViewById(R.id.funcionario_button_start);
         btnStart.setOnClickListener(new View.OnClickListener() {
@@ -72,5 +70,10 @@ public class EmployerInitialActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent intent = getIntent();
+        Employer employer = (Employer) intent.getSerializableExtra("employer");
+
+        InitSidebar.fillSidebar(this, employer);
     }
 }
