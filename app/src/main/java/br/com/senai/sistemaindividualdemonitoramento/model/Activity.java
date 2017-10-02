@@ -6,8 +6,11 @@ package br.com.senai.sistemaindividualdemonitoramento.model;
 
 public class Activity {
     private int id;
-    private int funcionario;
     private String horaFim;
+    private int perda;
+    private int funcionario;
+    private int producao;
+    private int meta;
     private String horaInicio;
     private int os;
 
@@ -19,6 +22,22 @@ public class Activity {
         this.id = id;
     }
 
+    public String getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(String horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public int getPerda() {
+        return perda;
+    }
+
+    public void setPerda(int perda) {
+        this.perda = perda;
+    }
+
     public int getFuncionario() {
         return funcionario;
     }
@@ -27,12 +46,20 @@ public class Activity {
         this.funcionario = funcionario;
     }
 
-    public String getHoraFim() {
-        return horaFim;
+    public int getProducao() {
+        return producao;
     }
 
-    public void setHoraFim(String horaFim) {
-        this.horaFim = horaFim;
+    public void setProducao(int producao) {
+        this.producao = producao;
+    }
+
+    public int getMeta() {
+        return meta;
+    }
+
+    public void setMeta(int meta) {
+        this.meta = meta;
     }
 
     public String getHoraInicio() {

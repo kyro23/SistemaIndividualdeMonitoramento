@@ -37,9 +37,21 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             />
+        <Button
+            android:id="@+id/cadastro"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Cadastrar Usuario"
+            android:background="@drawable/button_green_shape"/>
 
-
-
+        <Button
+            android:id="@+id/visualizarFunc"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Visualizar Funcionarios"
+            android:background="@drawable/button_blue_shape"
+            android:textColor="#FFFF"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </LinearLayout>

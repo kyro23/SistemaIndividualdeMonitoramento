@@ -30,7 +30,13 @@
         <activity
             android:name=".ManangerActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".EmployerFinishActivity" android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".EmployerFinishActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".CadastroActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".model.model.dao.ListEmployerActivity" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

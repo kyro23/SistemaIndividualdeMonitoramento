@@ -9,6 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.EmployerDAO;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ListEmployerActivity;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -19,9 +25,21 @@ public class InitialActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction tx = fragmentManager.beginTransaction();
-        tx.replace(R.id.frame_sidebar, new SidebarFragment());
+
+        final SidebarFragment sidebarFragment = new SidebarFragment();
+
+        tx.replace(R.id.frame_sidebar, sidebarFragment);
         tx.commit();
 
+
+        Button btnViewFunc = (Button) findViewById(R.id.visualizarFunc);
+        btnViewFunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewEmp = new Intent(InitialActivity.this, ListEmployerActivity.class);
+                startActivity(viewEmp);
+            }
+        });
 
         final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setTitle("Logar como");
@@ -57,6 +75,40 @@ public class InitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alertBuilder.show();
+
+                String os = sidebarFragment.getOs();
+                String matricula = sidebarFragment.getMatricula();
+                String password = sidebarFragment.getPassword();
+
+                if(!(os.isEmpty() && matricula.isEmpty() && password.isEmpty())){
+                    Employer employer = new Employer();
+
+                    employer.setMatricula(Long.parseLong(matricula));
+                    employer.setSenha(password);
+
+                    EmployerDAO dao = new EmployerDAO(InitialActivity.this);
+
+                    Employer finded = dao.login(employer);
+                    if(finded.getNome() != null){
+                        Toast.makeText(InitialActivity.this, "Logado!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(InitialActivity.this, "Não Logado!", Toast.LENGTH_SHORT).show();
+                    }
+                    dao.close();
+                }else{
+                    Toast.makeText(InitialActivity.this, "Preencha os campos!", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        Button btnCadastrar = (Button) findViewById(R.id.cadastro);
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cadastro = new Intent(InitialActivity.this, CadastroActivity.class);
+                startActivity(cadastro);
             }
         });
     }

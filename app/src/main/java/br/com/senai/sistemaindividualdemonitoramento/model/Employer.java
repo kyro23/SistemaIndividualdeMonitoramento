@@ -6,16 +6,16 @@ package br.com.senai.sistemaindividualdemonitoramento.model;
 
 public class Employer {
 
-    private int matricula;
+    private Long matricula;
     private String senha;
     private String nome;
     private String tipo;
 
-    public int getMatricula() {
+    public Long getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Long matricula) {
         this.matricula = matricula;
     }
 
