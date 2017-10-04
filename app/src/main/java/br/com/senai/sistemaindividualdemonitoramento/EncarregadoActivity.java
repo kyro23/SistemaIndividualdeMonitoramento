@@ -1,6 +1,9 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -39,5 +42,25 @@ public class EncarregadoActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button btnPhoto = (Button) findViewById(R.id.encarregado_button_photo);
+        btnPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!checkPermission()){
+                    getPermission();
+                }
+
+
+            }
+        });
+    }
+
+    private boolean checkPermission(){
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void getPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
     }
 }
