@@ -29,23 +29,13 @@ public class EncarregadoActivity extends AppCompatActivity {
         String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
 
-        Spinner spn = (Spinner) findViewById(R.id.spn_activity);
+        Spinner spn = (Spinner) findViewById(R.id.spn_activity_encarregado);
         spn.setAdapter(adapter);
 
         Button btnSalvar = (Button) findViewById(R.id.encarregado_button_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText goalField = (EditText) findViewById(R.id.txt_goal);
-                Spinner spnActivity = (Spinner) findViewById(R.id.spn_activity_encarregado);
-
-                String goal = goalField.getText().toString();
-                String activity = spnActivity.getSelectedItem().toString();
-
-
-                ServiceOrder os = new ServiceOrder();
-//                os.set
-
                 finish();
             }
         });

@@ -94,7 +94,9 @@ public class EmployerDAO extends SQLiteOpenHelper{
         SQLiteDatabase db = getReadableDatabase();
         System.out.println(employer.getMatricula());
         System.out.println(employer.getSenha());
-        Cursor c = db.rawQuery("SELECT * FROM employer WHERE matricula = ? AND senha = ?", new String[]{employer.getMatricula().toString(), employer.getSenha()});
+
+        String[] params = {employer.getMatricula().toString(), employer.getSenha()};
+        Cursor c = db.rawQuery("SELECT * FROM employer WHERE matricula = ? AND senha = ?",params);
         Employer employerFind = new Employer();
        if(c.moveToFirst()){
 

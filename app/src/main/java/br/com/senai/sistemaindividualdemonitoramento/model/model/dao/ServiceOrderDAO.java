@@ -29,6 +29,7 @@ public class ServiceOrderDAO extends SQLiteOpenHelper {
                 "nome TEXT NOT NULL, " +
                 "videoInstrucao TEXT, " +
                 "fotoInstrucao TEXT);";
+        sqLiteDatabase.execSQL(sql);
     }
 
     @Override
