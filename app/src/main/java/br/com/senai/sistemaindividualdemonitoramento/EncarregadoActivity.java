@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 
 public class EncarregadoActivity extends AppCompatActivity {
 
@@ -30,10 +32,20 @@ public class EncarregadoActivity extends AppCompatActivity {
         Spinner spn = (Spinner) findViewById(R.id.spn_activity);
         spn.setAdapter(adapter);
 
-        Button btnSalvar = (Button) findViewById(R.id.encarregado_salvar);
+        Button btnSalvar = (Button) findViewById(R.id.encarregado_button_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText goalField = (EditText) findViewById(R.id.txt_goal);
+                Spinner spnActivity = (Spinner) findViewById(R.id.spn_activity_encarregado);
+
+                String goal = goalField.getText().toString();
+                String activity = spnActivity.getSelectedItem().toString();
+
+
+                ServiceOrder os = new ServiceOrder();
+//                os.set
+
                 finish();
             }
         });

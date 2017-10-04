@@ -9,12 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.EmployerDAO;
-import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ListEmployerActivity;
 
 public class InitialActivity extends AppCompatActivity {
 
