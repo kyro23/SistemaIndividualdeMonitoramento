@@ -1,4 +1,4 @@
-package br.com.senai.sistemaindividualdemonitoramento.model.model.dao;
+package br.com.senai.sistemaindividualdemonitoramento;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.senai.sistemaindividualdemonitoramento.R;
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.EmployerDAO;
 
 public class ListEmployerActivity extends AppCompatActivity {
 

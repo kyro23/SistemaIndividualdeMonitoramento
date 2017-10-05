@@ -32,7 +32,7 @@
             android:layout_marginTop="130dp">
 
             <Spinner
-                android:id="@+id/spn_activity"
+                android:id="@+id/spn_activity_encarregado"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Atividade"
                 android:textSize="20dp"
-                android:layout_alignTop="@id/spn_activity"
+                android:layout_alignTop="@id/spn_activity_encarregado"
                 android:layout_centerHorizontal="true"
                 android:textColor="#004f76"
                 android:layout_marginTop="-30dp"
@@ -58,7 +58,7 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:background="@drawable/spinner_shape"
-                android:layout_alignBottom="@id/spn_activity"
+                android:layout_alignBottom="@id/spn_activity_encarregado"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="-100dp"
                 android:padding="10sp"/>
@@ -84,7 +84,7 @@
             android:layout_marginBottom="10dp">
 
             <Button
-                android:id="@+id/encarregado_salvar"
+                android:id="@+id/encarregado_button_salvar"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:text="Salvar"

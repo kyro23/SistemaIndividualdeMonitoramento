@@ -1,6 +1,9 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 
 public class EncarregadoActivity extends AppCompatActivity {
 
@@ -27,15 +32,35 @@ public class EncarregadoActivity extends AppCompatActivity {
         String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
 
-        Spinner spn = (Spinner) findViewById(R.id.spn_activity);
+        Spinner spn = (Spinner) findViewById(R.id.spn_activity_encarregado);
         spn.setAdapter(adapter);
 
-        Button btnSalvar = (Button) findViewById(R.id.encarregado_salvar);
+        Button btnSalvar = (Button) findViewById(R.id.encarregado_button_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        Button btnPhoto = (Button) findViewById(R.id.encarregado_button_photo);
+        btnPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!checkPermission()){
+                    getPermission();
+                }
+
+
+            }
+        });
+    }
+
+    private boolean checkPermission(){
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void getPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
     }
 }

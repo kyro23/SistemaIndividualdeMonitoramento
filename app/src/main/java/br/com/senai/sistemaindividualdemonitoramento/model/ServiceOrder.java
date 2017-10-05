@@ -6,16 +6,16 @@ package br.com.senai.sistemaindividualdemonitoramento.model;
 
 public class ServiceOrder {
 
-    private int id;
+    private Long id;
     private String videoInstrucao;
     private String fotoInstrucao;
     private String nome;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -29,7 +29,7 @@ public class SidebarFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sidebar, container, false);
+        view = inflater.inflate(R.layout.fragment_sidebar, container, false);
 
         campoOs = view.findViewById(R.id.sidebar_op_text);
         campoMatricula = view.findViewById(R.id.sidebar_user_text);
@@ -38,8 +38,6 @@ public class SidebarFragment extends Fragment {
         campoOs.setText(os);
         campoMatricula.setText(matricula);
         campoSenha.setText(senha);
-
-        this.view = view;
 
         return view;
 

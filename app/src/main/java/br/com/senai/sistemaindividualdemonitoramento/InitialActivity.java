@@ -9,24 +9,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.EmployerDAO;
-import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ListEmployerActivity;
 
 public class InitialActivity extends AppCompatActivity {
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction tx;
+    private SidebarFragment sidebarFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction tx = fragmentManager.beginTransaction();
+        fragmentManager = getSupportFragmentManager();
+        tx = fragmentManager.beginTransaction();
 
-        final SidebarFragment sidebarFragment = new SidebarFragment();
+        sidebarFragment = new SidebarFragment();
 
         tx.replace(R.id.frame_sidebar, sidebarFragment);
         tx.commit();
@@ -41,46 +43,16 @@ public class InitialActivity extends AppCompatActivity {
             }
         });
 
-        final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setTitle("Logar como");
-        String[] tipos = {"Funcionário", "Encarregado", "Gestor"};
-
-        alertBuilder.setItems(tipos, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                switch (i){
-                    case 0:
-                        Intent goEmployerInitial = new Intent(InitialActivity.this, EmployerInitialActivity.class);
-                        startActivity(goEmployerInitial);
-
-                        break;
-                    case 1:
-                        Intent goEncarregado = new Intent(InitialActivity.this, EncarregadoActivity.class);
-                        startActivity(goEncarregado);
-
-                        break;
-                    case 2:
-                        Intent goMananger = new Intent(InitialActivity.this, ManangerActivity.class);
-                        startActivity(goMananger);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
         Button btnLogin = (Button) findViewById(R.id.button_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                alertBuilder.show();
 
                 String os = sidebarFragment.getOs();
                 String matricula = sidebarFragment.getMatricula();
                 String password = sidebarFragment.getPassword();
 
-                if(!(os.isEmpty() && matricula.isEmpty() && password.isEmpty())){
+                if(!(os.isEmpty() || matricula.isEmpty() || password.isEmpty())){
                     Employer employer = new Employer();
 
                     employer.setMatricula(Long.parseLong(matricula));
@@ -92,13 +64,7 @@ public class InitialActivity extends AppCompatActivity {
                     if(finded.getNome() != null){
                         Toast.makeText(InitialActivity.this, "Logado!", Toast.LENGTH_SHORT).show();
 
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction tx = fragmentManager.beginTransaction();
 
-                        final SidebarFragment sidebarFragment = new SidebarFragment();
-
-                        tx.replace(R.id.frame_sidebar, sidebarFragment);
-                        tx.commit();
 
                         switch (finded.getTipo()) {
                             case "Funcionario":
@@ -125,6 +91,13 @@ public class InitialActivity extends AppCompatActivity {
                                 break;
                         }
 
+                        fragmentManager = getSupportFragmentManager();
+                        tx = fragmentManager.beginTransaction();
+
+                        sidebarFragment = new SidebarFragment();
+
+                        tx.replace(R.id.fragment_sidebar, sidebarFragment);
+                        tx.commit();
                     }else{
                         Toast.makeText(InitialActivity.this, "Não Logado!", Toast.LENGTH_SHORT).show();
                     }
