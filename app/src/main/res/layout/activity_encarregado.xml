@@ -29,15 +29,34 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp">
+            android:layout_marginTop="100dp">
 
+            <EditText
+                android:id="@+id/encarregado_txt_os"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@drawable/spinner_shape"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:padding="10sp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordem de Serviço"
+                android:textSize="20dp"
+                android:layout_alignTop="@id/encarregado_txt_os"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-30dp"
+                android:textColor="#004f76"/>
             <Spinner
-                android:id="@+id/spn_activity_encarregado"
+                android:id="@+id/encarregado_sp_activity"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/spinner_shape"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="130dp"
                 android:padding="10sp"
 
                 />
@@ -47,33 +66,32 @@
                 android:layout_height="wrap_content"
                 android:text="Atividade"
                 android:textSize="20dp"
-                android:layout_alignTop="@id/spn_activity_encarregado"
+                android:layout_alignTop="@id/encarregado_sp_activity"
                 android:layout_centerHorizontal="true"
                 android:textColor="#004f76"
                 android:layout_marginTop="-30dp"
                 />
 
             <EditText
-                android:id="@+id/txt_goal"
+                android:id="@+id/encarregado_txt_meta"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:background="@drawable/spinner_shape"
-                android:layout_alignBottom="@id/spn_activity_encarregado"
+                android:layout_alignBottom="@id/encarregado_sp_activity"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="-100dp"
-                android:padding="10sp"/>
+                android:layout_marginBottom="-80dp"
+                android:padding="10sp"
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meta Por Hora"
                 android:textSize="20dp"
-                android:layout_alignTop="@id/txt_goal"
+                android:layout_alignTop="@id/encarregado_txt_meta"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-30dp"
                 android:textColor="#004f76"/>
-
-
         </RelativeLayout>
 
         <RelativeLayout

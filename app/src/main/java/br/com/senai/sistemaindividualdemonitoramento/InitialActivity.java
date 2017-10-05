@@ -1,10 +1,8 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,7 +50,7 @@ public class InitialActivity extends AppCompatActivity {
                 String matricula = sidebarFragment.getMatricula();
                 String password = sidebarFragment.getPassword();
 
-                if(!(os.isEmpty() || matricula.isEmpty() || password.isEmpty())){
+                if(!(matricula.isEmpty() || password.isEmpty())){
                     Employer employer = new Employer();
 
                     employer.setMatricula(Long.parseLong(matricula));
