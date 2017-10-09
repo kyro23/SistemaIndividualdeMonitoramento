@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
@@ -74,9 +80,16 @@ public class EncarregadoActivity extends AppCompatActivity {
                 }
 
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                photoPath = getExternalFilesDir(null)+"/"+System.currentTimeMillis()+".jpg";
-                File filePhoto = new File(photoPath);
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+
+                Uri photoURI = null;
+                try {
+                    photoURI = FileProvider.getUriForFile(EncarregadoActivity.this,
+                            BuildConfig.APPLICATION_ID + ".provider", createImageFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(intentCamera, CAMERA_PHOTO_CODE);
             }
         });
@@ -87,16 +100,20 @@ public class EncarregadoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!checkPermission()){
                     getPermission();
+                    takePhoto();
+                }else {
+                    takePhoto();
                 }
-
-                Intent intentCamera = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                videoPath = getExternalFilesDir(null)+"/"+System.currentTimeMillis()+".mp4";
-                File fileVideo = new File(videoPath);
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileVideo));
-                startActivityForResult(intentCamera, CAMERA_VIDEO_CODE);
-
             }
         });
+    }
+
+    private void takePhoto() {
+        Intent intentCamera = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        videoPath = getExternalFilesDir(null)+"/"+System.currentTimeMillis()+".mp4";
+        File fileVideo = new File(videoPath);
+        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileVideo));
+        startActivityForResult(intentCamera, CAMERA_VIDEO_CODE);
     }
 
     @Override
@@ -116,5 +133,22 @@ public class EncarregadoActivity extends AppCompatActivity {
 
     private void getPermission(){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "Camera");
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        photoPath = "file:" + image.getAbsolutePath();
+        return image;
     }
 }
