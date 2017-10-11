@@ -2,6 +2,7 @@ package br.com.senai.sistemaindividualdemonitoramento;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -20,12 +21,12 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ServiceOrderDAO;
 
 public class EncarregadoActivity extends AppCompatActivity {
 
@@ -34,13 +35,13 @@ public class EncarregadoActivity extends AppCompatActivity {
     private String photoPath;
     private String videoPath;
 
-    private EditText fieldOs;
-    private Spinner spnActivity;
-    private EditText fieldGoal;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
         setContentView(R.layout.activity_encarregado);
 
         Intent intent = getIntent();
@@ -58,7 +59,11 @@ public class EncarregadoActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int osNumber = Integer.parseInt(fieldOs.getText().toString());
+                EditText fieldOs = (EditText) findViewById(R.id.encarregado_txt_os);
+                Spinner spnActivity = (Spinner) findViewById(R.id.encarregado_sp_activity);
+                EditText fieldGoal = (EditText) findViewById(R.id.encarregado_txt_meta);
+
+                Long osNumber = Long.parseLong(fieldOs.getText().toString());
                 int goal = Integer.parseInt(fieldGoal.getText().toString());
                 String activity = (String) spnActivity.getSelectedItem();
 
@@ -66,8 +71,10 @@ public class EncarregadoActivity extends AppCompatActivity {
                 os.setId(osNumber);
                 os.setFotoInstrucao(photoPath);
                 os.setVideoInstrucao(videoPath);
+                os.setMetaPorHora(goal);
+                os.setNome(activity);
 
-                finish();
+                insertServiceOrder(os);
             }
         });
 
@@ -106,6 +113,17 @@ public class EncarregadoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void insertServiceOrder(ServiceOrder os){
+        ServiceOrderDAO dao = new ServiceOrderDAO(this);
+        if(dao.create(os) < 0){
+            Toast.makeText(this, "Ordem de serviço Criada com sucesso!", Toast.LENGTH_SHORT).show();
+
+            finish();
+        }else{
+            Toast.makeText(this, "Ocorreu um erro ao criar ordem de serviço", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void takePhoto() {

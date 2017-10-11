@@ -10,6 +10,15 @@ public class ServiceOrder {
     private String videoInstrucao;
     private String fotoInstrucao;
     private String nome;
+    private int metaPorHora;
+
+    public int getMetaPorHora() {
+        return metaPorHora;
+    }
+
+    public void setMetaPorHora(int metaPorHora) {
+        this.metaPorHora = metaPorHora;
+    }
 
     public Long getId() {
         return id;
