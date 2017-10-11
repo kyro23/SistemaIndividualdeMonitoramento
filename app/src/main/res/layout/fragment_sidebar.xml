@@ -1,4 +1,3 @@
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -41,6 +40,7 @@
         android:textSize="18sp"
         android:inputType="number"
         android:textAlignment="center"
+        android:textCursorDrawable="@null"
         />
 
 
@@ -61,7 +61,8 @@
         android:src="@drawable/ic_user"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@id/sidebar_label_user"
-        android:layout_marginTop="-60dp"/>
+        android:layout_marginTop="-60dp"
+        />
 
     <EditText
         android:id="@+id/sidebar_user_text"
@@ -75,10 +76,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:inputType="number"
-        android:textAlignment="center"/>
-
-
-
+        android:textAlignment="center"
+        android:textCursorDrawable="@null"/>
 
     <TextView
         android:id="@+id/sidebar_label_password"
@@ -111,5 +110,6 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textAlignment="center"
+        android:textCursorDrawable="@null"
         />
 </RelativeLayout>
