@@ -149,6 +149,7 @@ public class EncarregadoActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         photoPath = "file:" + image.getAbsolutePath();
+        System.out.println(photoPath);
         return image;
     }
 }
