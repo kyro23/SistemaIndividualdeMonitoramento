@@ -40,8 +40,9 @@ public class EncarregadoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Employer employer = (Employer) intent.getSerializableExtra("employer");
+        final ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
 
-        InitSidebar.fillSidebar(this, employer);
+        InitSidebar.fillSidebar(this, employer, os);
 
         String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
@@ -49,10 +50,50 @@ public class EncarregadoActivity extends AppCompatActivity {
         Spinner spn = (Spinner) findViewById(R.id.encarregado_sp_activity);
         spn.setAdapter(adapter);
 
+        if(os.getId() != null){
+            EditText fieldOs = (EditText) findViewById(R.id.encarregado_txt_os);
+            EditText fieldGoal = (EditText) findViewById(R.id.encarregado_txt_meta);
+
+
+            fieldOs.setText(String.valueOf(os.getId()));
+            spn.setSelection(adapter.getPosition(os.getNome()));
+            fieldGoal.setText(String.valueOf(os.getMetaPorHora()));
+            videoPath = os.getVideoInstrucao();
+            photoPath = os.getFotoInstrucao();
+        }
+
         Button btnSalvar = (Button) findViewById(R.id.encarregado_button_salvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (os.getId() == null) {
+                    criaOs();
+                }else{
+                    EditText fieldOs = (EditText) findViewById(R.id.encarregado_txt_os);
+                    Spinner spnActivity = (Spinner) findViewById(R.id.encarregado_sp_activity);
+                    EditText fieldGoal = (EditText) findViewById(R.id.encarregado_txt_meta);
+
+                    Long osNumber = Long.parseLong(fieldOs.getText().toString());
+                    int goal = Integer.parseInt(fieldGoal.getText().toString());
+                    String activity = (String) spnActivity.getSelectedItem();
+
+                    if(osNumber.equals(os.getId())){
+                        ServiceOrderDAO dao = new ServiceOrderDAO(EncarregadoActivity.this);
+                        os.setFotoInstrucao(photoPath);
+                        os.setVideoInstrucao(videoPath);
+                        os.setNome(activity);
+                        os.setMetaPorHora(goal);
+
+                        dao.update(os);
+                        Toast.makeText(EncarregadoActivity.this, "Salvo!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        criaOs();
+                    }
+                }
+            }
+
+            private void criaOs() {
                 EditText fieldOs = (EditText) findViewById(R.id.encarregado_txt_os);
                 Spinner spnActivity = (Spinner) findViewById(R.id.encarregado_sp_activity);
                 EditText fieldGoal = (EditText) findViewById(R.id.encarregado_txt_meta);
@@ -61,14 +102,15 @@ public class EncarregadoActivity extends AppCompatActivity {
                 int goal = Integer.parseInt(fieldGoal.getText().toString());
                 String activity = (String) spnActivity.getSelectedItem();
 
-                ServiceOrder os = new ServiceOrder();
-                os.setId(osNumber);
-                os.setFotoInstrucao(photoPath);
-                os.setVideoInstrucao(videoPath);
-                os.setMetaPorHora(goal);
-                os.setNome(activity);
+                ServiceOrder osToAdd = new ServiceOrder();
+                osToAdd.setId(osNumber);
+                osToAdd.setFotoInstrucao(photoPath);
+                osToAdd.setVideoInstrucao(videoPath);
+                osToAdd.setMetaPorHora(goal);
+                osToAdd.setNome(activity);
 
-                insertServiceOrder(os);
+                insertServiceOrder(osToAdd);
+
             }
         });
 

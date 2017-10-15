@@ -24,7 +24,7 @@ public class OsActivity extends AppCompatActivity {
         List<ServiceOrder> servicesOrders = dao.read();
         for(ServiceOrder os : servicesOrders){
             strOs.add("Id: "+os.getId()+" Nome: "+os.getNome()+" CaminhoFoto: "+os.getFotoInstrucao()+"" +
-                    " CaminhoVideo: "+os.getVideoInstrucao());
+                    " CaminhoVideo: "+os.getVideoInstrucao()+" Meta por hora: "+os.getMetaPorHora());
         }
 
 

@@ -1,5 +1,6 @@
 package br.com.senai.sistemaindividualdemonitoramento.model.model.dao;
 
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -41,6 +42,7 @@ public class ServiceOrderDAO {
         data.put("nome", os.getNome());
         data.put("videoInstrucao", os.getVideoInstrucao());
         data.put("fotoInstrucao", os.getFotoInstrucao());
+        data.put("metaPorHora", os.getMetaPorHora());
 
         return data;
     }
@@ -57,6 +59,7 @@ public class ServiceOrderDAO {
             os.setNome(c.getString(c.getColumnIndex("nome")));
             os.setFotoInstrucao(c.getString(c.getColumnIndex("fotoInstrucao")));
             os.setVideoInstrucao(c.getString(c.getColumnIndex("videoInstrucao")));
+            os.setMetaPorHora(c.getInt(c.getColumnIndex("metaPorHora")));
 
             serviceOrders.add(os);
         }
@@ -82,5 +85,25 @@ public class ServiceOrderDAO {
 
         db.delete("serviceorder", "id = ?", params);
         helper.close();
+    }
+
+    public ServiceOrder findById(ServiceOrder os){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] params = {os.getId().toString()};
+        ServiceOrder serviceOrder = new ServiceOrder();
+
+        String sql = "SELECT * FROM serviceorder WHERE id = ?";
+        Cursor c = db.rawQuery(sql, params);
+        if(c.moveToFirst()){
+            serviceOrder.setNome(c.getString(c.getColumnIndex("nome")));
+            serviceOrder.setId(c.getLong(c.getColumnIndex("id")));
+            serviceOrder.setVideoInstrucao(c.getString(c.getColumnIndex("videoInstrucao")));
+            serviceOrder.setFotoInstrucao(c.getString(c.getColumnIndex("fotoInstrucao")));
+            serviceOrder.setMetaPorHora(c.getInt(c.getColumnIndex("metaPorHora")));
+
+        }
+        helper.close();
+        c.close();
+        return serviceOrder;
     }
 }

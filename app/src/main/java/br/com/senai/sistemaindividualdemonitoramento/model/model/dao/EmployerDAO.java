@@ -84,8 +84,6 @@ public class EmployerDAO{
 
     public Employer login(Employer employer){
         SQLiteDatabase db = helper.getReadableDatabase();
-        System.out.println(employer.getMatricula());
-        System.out.println(employer.getSenha());
 
         String[] params = {employer.getMatricula().toString(), employer.getSenha()};
         Cursor c = db.rawQuery("SELECT * FROM employer WHERE matricula = ? AND senha = ?",params);
@@ -97,6 +95,7 @@ public class EmployerDAO{
            employerFind.setSenha(c.getString(c.getColumnIndex("senha")));
            employerFind.setTipo(c.getString(c.getColumnIndex("tipo")));
        }
+       c.close();
        helper.close();
        return  employerFind;
     }

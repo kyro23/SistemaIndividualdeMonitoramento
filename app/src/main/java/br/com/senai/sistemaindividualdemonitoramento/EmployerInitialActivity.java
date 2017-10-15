@@ -1,5 +1,6 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 
 public class EmployerInitialActivity extends AppCompatActivity {
 
@@ -73,7 +75,8 @@ public class EmployerInitialActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Employer employer = (Employer) intent.getSerializableExtra("employer");
+        ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
 
-        InitSidebar.fillSidebar(this, employer);
+        InitSidebar.fillSidebar(this, employer, os);
     }
 }

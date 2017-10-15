@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 
 public class ManangerActivity extends AppCompatActivity {
 
@@ -17,7 +18,8 @@ public class ManangerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Employer employer = (Employer) intent.getSerializableExtra("employer");
+        ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
 
-        InitSidebar.fillSidebar(this, employer);
+        InitSidebar.fillSidebar(this, employer, os);
     }
 }

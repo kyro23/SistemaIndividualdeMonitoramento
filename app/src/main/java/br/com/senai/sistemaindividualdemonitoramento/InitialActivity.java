@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.EmployerDAO;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ServiceOrderDAO;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -46,7 +48,7 @@ public class InitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String os = sidebarFragment.getOs();
+                String osNumber = sidebarFragment.getOs();
                 String matricula = sidebarFragment.getMatricula();
                 String password = sidebarFragment.getPassword();
 
@@ -59,16 +61,24 @@ public class InitialActivity extends AppCompatActivity {
                     EmployerDAO dao = new EmployerDAO(InitialActivity.this);
 
                     Employer finded = dao.login(employer);
+
+                    ServiceOrder os = new ServiceOrder();
+                    if(!osNumber.isEmpty()) {
+                        os.setId(Long.parseLong(osNumber));
+                    }else {
+                        os.setId(-1);
+                    }
+                    ServiceOrderDAO osDAO = new ServiceOrderDAO(InitialActivity.this);
+                    os = osDAO.findById(os);
+
                     if(finded.getNome() != null){
                         Toast.makeText(InitialActivity.this, "Logado!", Toast.LENGTH_SHORT).show();
-
-
 
                         switch (finded.getTipo()) {
                             case "Funcionario":
                                 Intent goEmployerInitial = new Intent(InitialActivity.this, EmployerInitialActivity.class);
                                 goEmployerInitial.putExtra("employer", finded);
-
+                                goEmployerInitial.putExtra("os", os);
                                 startActivity(goEmployerInitial);
 
                                 break;
@@ -76,6 +86,7 @@ public class InitialActivity extends AppCompatActivity {
                                 Intent goMananger = new Intent(InitialActivity.this, ManangerActivity.class);
 
                                 goMananger.putExtra("employer", finded);
+                                goMananger.putExtra("os", os);
                                 startActivity(goMananger);
 
                                 break;
@@ -83,6 +94,8 @@ public class InitialActivity extends AppCompatActivity {
 
                                 Intent goEncarregado = new Intent(InitialActivity.this, EncarregadoActivity.class);
                                 goEncarregado.putExtra("employer", finded);
+                                goEncarregado.putExtra("os", os);
+
                                 startActivity(goEncarregado);
                                 break;
                             default:

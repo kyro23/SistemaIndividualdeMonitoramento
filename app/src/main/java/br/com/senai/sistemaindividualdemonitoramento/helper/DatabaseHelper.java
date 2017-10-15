@@ -30,7 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY, " +
                 "nome TEXT NOT NULL, " +
                 "videoInstrucao TEXT, " +
-                "fotoInstrucao TEXT);";
+                "fotoInstrucao TEXT," +
+                "metaPorHora INTEGER);";
         sqLiteDatabase.execSQL(tblServiceOrder);
     }
 
