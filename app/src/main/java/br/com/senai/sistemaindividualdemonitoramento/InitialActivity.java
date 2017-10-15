@@ -99,7 +99,6 @@ public class InitialActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(InitialActivity.this, "Não Logado!", Toast.LENGTH_SHORT).show();
                     }
-                    dao.close();
                 }else{
                     Toast.makeText(InitialActivity.this, "Preencha os campos!", Toast.LENGTH_SHORT).show();
                 }
@@ -114,6 +113,16 @@ public class InitialActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent cadastro = new Intent(InitialActivity.this, CadastroActivity.class);
                 startActivity(cadastro);
+            }
+        });
+
+        Button btnviewOs = (Button) findViewById(R.id.visualizarOs);
+        btnviewOs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent viewOs = new Intent(InitialActivity.this, OsActivity.class);
+                startActivity(viewOs);
             }
         });
     }

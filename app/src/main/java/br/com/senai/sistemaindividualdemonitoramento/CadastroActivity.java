@@ -53,7 +53,6 @@ public class CadastroActivity extends AppCompatActivity {
                         Toast.makeText(CadastroActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
 
-                    dao.close();
                 }else{
                     Toast.makeText(CadastroActivity.this, "Digite todos os campos!", Toast.LENGTH_SHORT).show();
                 }

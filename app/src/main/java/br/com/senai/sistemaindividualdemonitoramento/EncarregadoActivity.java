@@ -2,14 +2,12 @@ package br.com.senai.sistemaindividualdemonitoramento;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,10 +36,6 @@ public class EncarregadoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
         setContentView(R.layout.activity_encarregado);
 
         Intent intent = getIntent();
@@ -85,19 +79,12 @@ public class EncarregadoActivity extends AppCompatActivity {
                 if(!checkPermission()){
                     getPermission();
                 }
-
-                Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                Uri photoURI = null;
                 try {
-                    photoURI = FileProvider.getUriForFile(EncarregadoActivity.this,
-                            BuildConfig.APPLICATION_ID + ".provider", createImageFile());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    dispatchTakePictureIntent();
+                }catch (IOException ex){
+                    ex.printStackTrace();
                 }
 
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(intentCamera, CAMERA_PHOTO_CODE);
             }
         });
 
@@ -107,9 +94,11 @@ public class EncarregadoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!checkPermission()){
                     getPermission();
-                    takePhoto();
-                }else {
-                    takePhoto();
+                }
+                try {
+                    dispatchVideoIntent();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -124,14 +113,6 @@ public class EncarregadoActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Ocorreu um erro ao criar ordem de serviço", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void takePhoto() {
-        Intent intentCamera = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        videoPath = getExternalFilesDir(null)+"/"+System.currentTimeMillis()+".mp4";
-        File fileVideo = new File(videoPath);
-        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileVideo));
-        startActivityForResult(intentCamera, CAMERA_VIDEO_CODE);
     }
 
     @Override
@@ -155,6 +136,7 @@ public class EncarregadoActivity extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -166,8 +148,69 @@ public class EncarregadoActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        photoPath = "file:" + image.getAbsolutePath();
-        System.out.println(photoPath);
+        System.out.println(image.getAbsolutePath());
+        photoPath = image.getAbsolutePath();
         return image;
     }
+
+
+    private File createVideoFile() throws IOException {
+        // Create an video file name
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String videoFileName = "MP4_" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "Camera");
+        File video = File.createTempFile(
+                videoFileName,  /* prefix */
+                ".mp4",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        System.out.println(video.getAbsolutePath());
+        videoPath = video.getAbsolutePath();
+        return video;
+    }
+
+    private void dispatchTakePictureIntent() throws IOException{
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+
+            try {
+                photoFile = createImageFile();
+            }catch (IOException ex){
+                return;
+            }
+
+            if(photoFile != null){
+                Uri photoUri = Uri.fromFile(createImageFile());
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(takePictureIntent, CAMERA_PHOTO_CODE);
+            }
+        }
+    }
+
+    private void dispatchVideoIntent() throws IOException{
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+
+        if(takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+            File videoFile = null;
+
+            try {
+                videoFile = createVideoFile();
+            }catch (IOException ex){
+                return;
+            }
+
+            if(videoFile != null){
+                Uri videoURI = Uri.fromFile(createVideoFile());
+                takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoURI);
+                startActivityForResult(takeVideoIntent, CAMERA_VIDEO_CODE);
+            }
+        }
+    }
+
 }

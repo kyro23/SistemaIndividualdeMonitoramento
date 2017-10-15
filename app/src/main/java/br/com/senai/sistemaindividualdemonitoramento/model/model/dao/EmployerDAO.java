@@ -9,40 +9,29 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.senai.sistemaindividualdemonitoramento.helper.DatabaseHelper;
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 
 /**
  * Created by OC on 25/09/2017.
  */
 
-public class EmployerDAO extends SQLiteOpenHelper{
-    public EmployerDAO(Context context) {
-        super(context, "sim", null, 1);
+public class EmployerDAO{
+
+    private DatabaseHelper helper;
+
+    public EmployerDAO(Context context){
+        helper = new DatabaseHelper(context);
     }
-
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE employer(" +
-                "matricula INTEGER PRIMARY KEY," +
-                "nome TEXT NOT NULL," +
-                "senha TEXT NOT NULL," +
-                "tipo TEXT NOT NULL);";
-
-        sqLiteDatabase.execSQL(sql);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
-
 
     public long create(Employer employer){
-        SQLiteDatabase db = getWritableDatabase();
-
+        SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues data = getContentValues(employer);
 
-       return db.insert("employer", null, data);
+        Long idInsert = db.insert("employer", null, data);
+
+        helper.close();
+        return idInsert;
     }
 
     private ContentValues getContentValues(Employer employer){
@@ -56,7 +45,7 @@ public class EmployerDAO extends SQLiteOpenHelper{
 
     public List<Employer> read(){
         String sql = "SELECT * FROM employer";
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 
         List<Employer> employers = new ArrayList<Employer>();
@@ -71,27 +60,30 @@ public class EmployerDAO extends SQLiteOpenHelper{
         }
 
         c.close();
+        helper.close();
 
         return employers;
     }
 
     public void update(Employer employer){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues data = getContentValues(employer);
         String[] params = {employer.getMatricula().toString()};
         db.update("employer", data, "matricula = ?", params);
+        helper.close();
     }
 
     public void delete(Employer employer){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
         String[] params = {employer.getMatricula().toString()};
 
         db.delete("employer", "matricula = ?", params);
+        helper.close();
     }
 
     public Employer login(Employer employer){
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
         System.out.println(employer.getMatricula());
         System.out.println(employer.getSenha());
 
@@ -105,6 +97,7 @@ public class EmployerDAO extends SQLiteOpenHelper{
            employerFind.setSenha(c.getString(c.getColumnIndex("senha")));
            employerFind.setTipo(c.getString(c.getColumnIndex("tipo")));
        }
+       helper.close();
        return  employerFind;
     }
 }
