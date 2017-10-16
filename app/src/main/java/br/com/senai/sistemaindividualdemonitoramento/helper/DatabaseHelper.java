@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE = "sim";
-    private static int VERSION = 1;
+    private static int VERSION = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE, null, VERSION);
@@ -22,7 +22,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "matricula INTEGER PRIMARY KEY," +
                 "nome TEXT NOT NULL," +
                 "senha TEXT NOT NULL," +
-                "tipo TEXT NOT NULL);";
+                "tipo TEXT NOT NULL" +
+                ");";
 
         sqLiteDatabase.execSQL(tblEmployer);
 
@@ -31,12 +32,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "nome TEXT NOT NULL, " +
                 "videoInstrucao TEXT, " +
                 "fotoInstrucao TEXT," +
-                "metaPorHora INTEGER);";
+                "metaPorHora INTEGER" +
+                ");";
         sqLiteDatabase.execSQL(tblServiceOrder);
+
+        String tblActivity = "CREATE TABLE activity(" +
+                "id INTEGER PRIMARY KEY, " +
+                "horaFim TEXT, " +
+                "perda INTEGER, " +
+                "employer INTEGER NOT NULL," +
+                "producao INTEGER," +
+                "horaInicio TEXT, " +
+                "os INTEGER, " +
+                "FOREIGN KEY(employer) REFERENCES employer(matricula)," +
+                "FOREIGN KEY(os) REFERENCES serviceorder(id)" +
+                ");";
+
+        sqLiteDatabase.execSQL(tblActivity);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newViersion) {
+        switch (oldVersion){
+            case 1:
+                String tblActivity = "CREATE TABLE activity(" +
+                        "id INTEGER PRIMARY KEY, " +
+                        "horaFim TEXT, " +
+                        "perda INTEGER, " +
+                        "employer INTEGER NOT NULL," +
+                        "producao INTEGER," +
+                        "horaInicio TEXT, " +
+                        "os INTEGER, " +
+                        "FOREIGN KEY(employer) REFERENCES employer(matricula)," +
+                        "FOREIGN KEY(os) REFERENCES serviceorder(id)" +
+                        ");";
 
+                sqLiteDatabase.execSQL(tblActivity);
+            default:
+                break;
+        }
     }
 }
