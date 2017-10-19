@@ -23,7 +23,11 @@ public class EmployerInitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_initial);
 
+        Intent intent = getIntent();
+        final Employer employer = (Employer) intent.getSerializableExtra("employer");
+        final ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
 
+        InitSidebar.fillSidebar(this, employer, os);
 
         String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
@@ -59,6 +63,9 @@ public class EmployerInitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goPauseScreen = new Intent(EmployerInitialActivity.this, EmployerPauseActivity.class);
+                goPauseScreen.putExtra("employer", employer);
+                goPauseScreen.putExtra("os", os);
+
                 startActivity(goPauseScreen);
             }
         });
@@ -68,15 +75,14 @@ public class EmployerInitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goFinish = new Intent(EmployerInitialActivity.this, EmployerFinishActivity.class);
+                goFinish.putExtra("employer", employer);
+                goFinish.putExtra("os", os);
+
                 startActivity(goFinish);
                 finish();
             }
         });
 
-        Intent intent = getIntent();
-        Employer employer = (Employer) intent.getSerializableExtra("employer");
-        ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
 
-        InitSidebar.fillSidebar(this, employer, os);
     }
 }

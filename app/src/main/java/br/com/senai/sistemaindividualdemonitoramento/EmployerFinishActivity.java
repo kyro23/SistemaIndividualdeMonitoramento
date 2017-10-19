@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
+
 public class EmployerFinishActivity extends AppCompatActivity {
 
     @Override
@@ -15,10 +18,11 @@ public class EmployerFinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_finish);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction tx = fragmentManager.beginTransaction();
-        tx.replace(R.id.frame_sidebar, new SidebarFragment());
-        tx.commit();
+        Intent intent = getIntent();
+        Employer employer = (Employer) intent.getSerializableExtra("employer");
+        ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
+
+        InitSidebar.fillSidebar(this, employer, os);
 
         Button btnFinish = (Button) findViewById(R.id.employer_finish_button);
         btnFinish.setOnClickListener(new View.OnClickListener() {

@@ -1,9 +1,13 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
+import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
 
 public class EmployerPauseActivity extends AppCompatActivity {
 
@@ -12,9 +16,11 @@ public class EmployerPauseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_pause);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction tx = fragmentManager.beginTransaction();
-        tx.replace(R.id.frame_sidebar, new SidebarFragment());
-        tx.commit();
+        Intent intent = getIntent();
+        Employer employer = (Employer) intent.getSerializableExtra("employer");
+        ServiceOrder os = (ServiceOrder) intent.getSerializableExtra("os");
+
+        InitSidebar.fillSidebar(this, employer, os);
+
     }
 }
