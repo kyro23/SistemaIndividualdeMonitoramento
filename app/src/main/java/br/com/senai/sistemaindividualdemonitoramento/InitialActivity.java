@@ -83,7 +83,7 @@ public class InitialActivity extends AppCompatActivity {
 
                                 break;
                             case "Gestor":
-                                Intent goMananger = new Intent(InitialActivity.this, ManangerActivity.class);
+                                Intent goMananger = new Intent(InitialActivity.this, ManagerInitialActivity.class);
 
                                 goMananger.putExtra("employer", finded);
                                 goMananger.putExtra("os", os);
