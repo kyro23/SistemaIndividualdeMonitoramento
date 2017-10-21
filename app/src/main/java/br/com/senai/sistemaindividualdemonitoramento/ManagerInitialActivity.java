@@ -35,5 +35,17 @@ public class ManagerInitialActivity extends AppCompatActivity {
             }
         });
 
+        Button btnViewUsers = (Button) findViewById(R.id.manager_btn_gerenciarUsr);
+        btnViewUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goViewUsers = new Intent(ManagerInitialActivity.this, ListUsersActivity.class);
+                goViewUsers.putExtra("employer", employer);
+
+                startActivity(goViewUsers);
+
+            }
+        });
+
     }
 }

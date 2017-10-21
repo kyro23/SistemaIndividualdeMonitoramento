@@ -33,16 +33,6 @@ public class InitialActivity extends AppCompatActivity {
         tx.replace(R.id.frame_sidebar, sidebarFragment);
         tx.commit();
 
-
-        Button btnViewFunc = (Button) findViewById(R.id.visualizarFunc);
-        btnViewFunc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent viewEmp = new Intent(InitialActivity.this, ListEmployerActivity.class);
-                startActivity(viewEmp);
-            }
-        });
-
         Button btnLogin = (Button) findViewById(R.id.button_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

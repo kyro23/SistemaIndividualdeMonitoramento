@@ -55,7 +55,10 @@
         <activity
             android:name=".OsActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ManagerInitialActivity" android:screenOrientation="landscape"/>
+        <activity
+            android:name=".ManagerInitialActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ListUsersActivity" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

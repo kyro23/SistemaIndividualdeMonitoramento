@@ -28,4 +28,17 @@ public class InitSidebar {
         tx.commit();
 
     }
+
+    public static void fillSidebar(AppCompatActivity appCompatActivity, Employer employer){
+
+        FragmentManager fragmentManager = appCompatActivity.getSupportFragmentManager();
+        FragmentTransaction tx = fragmentManager.beginTransaction();
+        SidebarFragment sidebarFragment = new SidebarFragment();
+        sidebarFragment.matricula = employer.getMatricula().toString();
+        sidebarFragment.senha = employer.getSenha();
+
+        tx.replace(R.id.frame_sidebar, sidebarFragment);
+        tx.commit();
+
+    }
 }
