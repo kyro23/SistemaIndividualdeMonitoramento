@@ -43,16 +43,6 @@
             android:layout_height="100dp"
             android:text="Cadastrar Usuario"
             android:background="@drawable/button_green_shape"/>
-
-        <Button
-            android:id="@+id/visualizarOs"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="130dp"
-            android:background="@drawable/button_blue_shape"
-            android:textColor="#FFFF"
-            android:text="Visualizar Ordem de produção"
-            />
     </RelativeLayout>
 
 </LinearLayout>

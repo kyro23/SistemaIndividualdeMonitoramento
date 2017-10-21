@@ -43,7 +43,17 @@ public class ManagerInitialActivity extends AppCompatActivity {
                 goViewUsers.putExtra("employer", employer);
 
                 startActivity(goViewUsers);
+            }
+        });
 
+        Button btnViewOs = (Button) findViewById(R.id.manager_btn_gerenciar_os);
+        btnViewOs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goViewOs = new Intent(ManagerInitialActivity.this, ListServiceOrderActivity.class);
+                goViewOs.putExtra("employer", employer);
+
+                startActivity(goViewOs);
             }
         });
 

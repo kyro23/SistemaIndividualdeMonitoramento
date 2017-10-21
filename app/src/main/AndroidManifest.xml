@@ -50,15 +50,12 @@
             android:name=".CadastroActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ListEmployerActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".OsActivity"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".ManagerInitialActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ListUsersActivity" android:screenOrientation="landscape"/>
+        <activity
+            android:name=".ListUsersActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ListServiceOrderActivity"></activity>
     </application>
 
 </manifest>
