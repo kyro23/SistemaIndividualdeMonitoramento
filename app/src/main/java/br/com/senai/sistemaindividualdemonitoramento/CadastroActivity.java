@@ -1,5 +1,6 @@
 package br.com.senai.sistemaindividualdemonitoramento;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,12 @@ public class CadastroActivity extends AppCompatActivity {
 
         String[] defaultSpnText = {"Funcionario", "Gestor", "Encarregado"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
+
+
+        Intent intent = getIntent();
+        Employer employer = (Employer) intent.getSerializableExtra("employer");
+
+        InitSidebar.fillSidebar(this, employer);
 
         Spinner spn = (Spinner) findViewById(R.id.cadastro_tipo);
         spn.setAdapter(adapter);
@@ -49,6 +56,7 @@ public class CadastroActivity extends AppCompatActivity {
                     EmployerDAO dao = new EmployerDAO(CadastroActivity.this);
                     if(dao.create(employer) != -1){
                         Toast.makeText(CadastroActivity.this, "Cadastrado!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }else{
                         Toast.makeText(CadastroActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }

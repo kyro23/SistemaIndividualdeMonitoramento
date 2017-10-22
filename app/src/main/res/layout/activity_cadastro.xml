@@ -1,92 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.senai.sistemaindividualdemonitoramento.ListUsersActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_sidebar"
+        android:layout_width="270dp"
+        android:layout_height="match_parent"/>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.com.senai.sistemaindividualdemonitoramento.CadastroActivity">
 
-    <EditText
-        android:id="@+id/cadastro_matricula"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/spinner_shape"
-        android:layout_marginTop="30dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Matricula"
-        android:layout_alignTop="@id/cadastro_matricula"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-30dp"
-        android:textSize="20sp"
-        android:inputType="number"/>
+        <EditText
+            android:id="@+id/cadastro_matricula"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/spinner_shape"
+            android:layout_marginTop="30dp"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matricula"
+            android:layout_alignTop="@id/cadastro_matricula"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-30dp"
+            android:textSize="20sp"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/cadastro_nome"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/spinner_shape"
+            android:layout_marginTop="130dp"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:layout_alignTop="@id/cadastro_nome"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-30dp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/cadastro_senha"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/spinner_shape"
+            android:layout_marginTop="230dp"
+            android:inputType="textPassword"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senha"
+            android:layout_alignTop="@id/cadastro_senha"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-30dp"
+            android:textSize="20sp"
+
+            />
 
 
-    <EditText
-        android:id="@+id/cadastro_nome"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/spinner_shape"
-        android:layout_marginTop="130dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome"
-        android:layout_alignTop="@id/cadastro_nome"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-30dp"
-        android:textSize="20sp"/>
+        <Spinner
+            android:id="@+id/cadastro_tipo"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/spinner_shape"
+            android:layout_marginTop="330dp"
+            android:padding="10sp"
 
-    <EditText
-        android:id="@+id/cadastro_senha"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/spinner_shape"
-        android:layout_marginTop="230dp"
-        android:inputType="textPassword"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha"
-        android:layout_alignTop="@id/cadastro_senha"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-30dp"
-        android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo"
+            android:layout_alignTop="@id/cadastro_tipo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-30dp"
+            android:textSize="20sp"
+            />
 
-        />
-
-
-    <Spinner
-        android:id="@+id/cadastro_tipo"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/spinner_shape"
-        android:layout_marginTop="330dp"
-        android:padding="10sp"
-
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo"
-        android:layout_alignTop="@id/cadastro_tipo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-30dp"
-        android:textSize="20sp"
-        />
-
-    <Button
-        android:id="@+id/cadastrar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="cadastrar"
-        android:textColor="#FFFF"
-        android:background="@drawable/button_green_shape"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/cadastrar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="cadastrar"
+            android:textColor="#FFFF"
+            android:background="@drawable/button_green_shape"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"/>
+    </RelativeLayout>
+</LinearLayout>

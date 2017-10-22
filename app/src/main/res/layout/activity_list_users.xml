@@ -20,6 +20,7 @@
             android:layout_height="match_parent"/>
 
         <Button
+            android:id="@+id/list_users_register"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:text="+"

@@ -107,14 +107,5 @@ public class InitialActivity extends AppCompatActivity {
                 }
             }
         });
-
-        Button btnCadastrar = (Button) findViewById(R.id.cadastro);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cadastro = new Intent(InitialActivity.this, CadastroActivity.class);
-                startActivity(cadastro);
-            }
-        });
     }
 }
