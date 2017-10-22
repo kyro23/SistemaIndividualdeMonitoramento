@@ -39,9 +39,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:inputType="number"
-        android:textAlignment="center"
         android:textCursorDrawable="@null"
-
+        android:gravity="center"
         />
 
 
@@ -63,6 +62,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@id/sidebar_label_user"
         android:layout_marginTop="-60dp"
+
         />
 
     <EditText
@@ -77,7 +77,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:inputType="number"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textCursorDrawable="@null"/>
 
     <TextView
@@ -110,7 +110,7 @@
         android:padding="5dp"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textCursorDrawable="@null"
         />
 </RelativeLayout>

@@ -46,7 +46,6 @@ public class SidebarFragment extends Fragment {
 
         }
         return view;
-
     }
     public String getOs(){
 
