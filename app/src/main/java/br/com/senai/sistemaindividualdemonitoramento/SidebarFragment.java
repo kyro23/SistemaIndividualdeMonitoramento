@@ -39,6 +39,12 @@ public class SidebarFragment extends Fragment {
         campoMatricula.setText(matricula);
         campoSenha.setText(senha);
 
+        if(matricula != null && senha != null) {
+
+            campoMatricula.setEnabled(false);
+            campoSenha.setEnabled(false);
+
+        }
         return view;
 
     }
