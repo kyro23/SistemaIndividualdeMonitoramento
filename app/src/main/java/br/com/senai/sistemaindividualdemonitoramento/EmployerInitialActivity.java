@@ -13,8 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.senai.sistemaindividualdemonitoramento.model.Employer;
 import br.com.senai.sistemaindividualdemonitoramento.model.ServiceOrder;
+import br.com.senai.sistemaindividualdemonitoramento.model.model.dao.ServiceOrderDAO;
 
 public class EmployerInitialActivity extends AppCompatActivity {
 
@@ -29,11 +33,7 @@ public class EmployerInitialActivity extends AppCompatActivity {
 
         InitSidebar.fillSidebar(this, employer, os);
 
-        String[] defaultSpnText = {"Dobra", "Cola", "Outra coisa sei la", "Não sou da grafica kkkjj"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, defaultSpnText);
 
-        Spinner spn = (Spinner) findViewById(R.id.spn_activity);
-        spn.setAdapter(adapter);
 
         final AlertDialog.Builder activityGoal = new AlertDialog.Builder(this);
         activityGoal.setTitle("Meta para a atividade: 200");
@@ -84,5 +84,27 @@ public class EmployerInitialActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        fillSpinner();
+        super.onResume();
+    }
+
+    private void fillSpinner() {
+        ServiceOrderDAO dao = new ServiceOrderDAO(this);
+        List<ServiceOrder> serviceOrders = dao.read();
+
+        List<String> spnText = new ArrayList<>();
+        for (ServiceOrder serviceOrder : serviceOrders){
+            spnText.add(serviceOrder.getNome());
+        }
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spnText);
+
+        Spinner spn = (Spinner) findViewById(R.id.spn_activity);
+        spn.setAdapter(adapter);
     }
 }

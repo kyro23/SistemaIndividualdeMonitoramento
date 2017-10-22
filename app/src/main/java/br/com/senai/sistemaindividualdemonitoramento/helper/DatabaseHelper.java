@@ -1,5 +1,6 @@
 package br.com.senai.sistemaindividualdemonitoramento.helper;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE = "sim";
-    private static int VERSION = 2;
+    private static int VERSION = 3;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE, null, VERSION);
@@ -49,6 +50,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ");";
 
         sqLiteDatabase.execSQL(tblActivity);
+
+        insertDefaultUser(sqLiteDatabase);
+
+    }
+
+    private void insertDefaultUser(SQLiteDatabase db) {
+        ContentValues data = new ContentValues();
+        data.put("matricula", 1);
+        data.put("nome", "Gestor");
+        data.put("senha", "1234");
+        data.put("tipo", "Gestor");
+
+        db.insert("employer", null, data);
     }
 
     @Override
@@ -68,7 +82,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         ");";
 
                 sqLiteDatabase.execSQL(tblActivity);
+
+            case 2:
+                insertDefaultUser(sqLiteDatabase);
             default:
+
                 break;
         }
     }
